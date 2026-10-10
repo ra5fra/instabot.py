@@ -1,0 +1,5 @@
+node_modules/
+# 25 MB – hämtas automatiskt av `npm install` (scripts/fetch-fonts.mjs)
+fonts/NotoColorEmoji.ttf
+# hjälpbilder från --guides
+output/*/guides/

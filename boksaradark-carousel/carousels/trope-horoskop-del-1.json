@@ -1,0 +1,50 @@
+{
+  "slides": [
+    {
+      "type": "hook",
+      "text": "Din födelsemånad avslöjar vilken *dark romance-trope* du är 🖤",
+      "subtext": "Del 1 av 2 · svep →"
+    },
+    {
+      "type": "month",
+      "month": "Januari",
+      "trope": "Enemies to lovers",
+      "text": "Du hatar honom.\nDu hatar honom fortfarande.\nKapitel 23: *oj.*"
+    },
+    {
+      "type": "month",
+      "month": "Februari",
+      "trope": "Stalker romance",
+      "text": "Du låser dörren.\nHan har redan en nyckel."
+    },
+    {
+      "type": "month",
+      "month": "Mars",
+      "trope": "Mafia romance",
+      "text": "Du ville bara ha en kaffe.\nNu är du gift in i familjen."
+    },
+    {
+      "type": "month",
+      "month": "April",
+      "trope": "Arrangerat äktenskap",
+      "text": "Ni har aldrig träffats.\nBröllopet är på lördag."
+    },
+    {
+      "type": "month",
+      "month": "Maj",
+      "trope": "Bodyguard",
+      "text": "Han ska skydda dig.\nMest från andra män."
+    },
+    {
+      "type": "month",
+      "month": "Juni",
+      "trope": "Why choose",
+      "text": "Varför välja en när du kan få tre problem?"
+    },
+    {
+      "type": "cta",
+      "text": "Vilken månad är du? 👇",
+      "subtext": "Juli–december kommer imorgon.\nFölj så du inte missar din 🔥"
+    }
+  ]
+}
