@@ -57,6 +57,7 @@ Vill du se de säkra zonerna inritade? `npm run render <namn> -- --guides` lägg
 Textregler:
 
 - `\n` = ny rad. Skriv en mening per rad. Renderaren krymper texten lite om det gör att varje mening får plats på en egen rad, och bryter annars balanserat.
+- Korta ord (1–2 bokstäver, t.ex. *i, på, en, är*) hålls automatiskt ihop med nästa ord så att en rad aldrig slutar på dem. Vill du hålla ihop fler ord själv: använd hårt mellanslag (`\u00a0`).
 - `*ord*` = röd accenttext (använd sparsamt, t.ex. en punchline).
 - Emojis och å/ä/ö fungerar som vanligt.
 - Är texten för lång krymps den automatiskt. Får den ändå inte plats skriver kommandot en varning (⚠) och avslutas med felkod.

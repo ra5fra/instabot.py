@@ -19,17 +19,26 @@
   if (!qa.fonts['Noto Color Emoji']) qa.issues.push('Noto Color Emoji laddades inte – emojis kan bli rutor');
 
   // ---- Text → ord-token. *så här* markerar accentord (röd text). \n tvingar ny rad. ----
+  // Korta ord (i, på, en, du …) hålls ihop med nästa ord så att en rad aldrig slutar på dem.
+  const isShortWord = (t) => /^[\p{L}\p{N}]{1,2}$/u.test(t);
+
   function tokenize(text) {
     let em = false;
-    return text.split('\n').map((para) =>
-      para.split(' ').filter(Boolean).map((word) => {
+    return text.split('\n').map((para) => {
+      const toks = para.split(' ').filter(Boolean).map((word) => {
         let t = word;
         let wordEm = em;
         if (t.startsWith('*')) { t = t.slice(1); wordEm = true; em = true; }
         if (t.endsWith('*')) { t = t.slice(0, -1); em = false; }
         return { t, em: wordEm };
-      }),
-    );
+      });
+      for (let i = toks.length - 2; i >= 0; i--) {
+        if (isShortWord(toks[i].t) && toks[i].em === toks[i + 1].em) {
+          toks.splice(i, 2, { t: `${toks[i].t}\u00a0${toks[i + 1].t}`, em: toks[i].em });
+        }
+      }
+      return toks;
+    });
   }
 
   function wordSpan(tok) {

@@ -1,0 +1,50 @@
+{
+  "slides": [
+    {
+      "type": "hook",
+      "text": "Din födelsemånad avslöjar vilken *dark romance-trope* du är 🖤",
+      "subtext": "Del 2 av 2 · juli–december · svep →"
+    },
+    {
+      "type": "month",
+      "month": "Juli",
+      "trope": "Forbidden romance",
+      "text": "Han är din brors bästa vän.\nDet är exakt därför."
+    },
+    {
+      "type": "month",
+      "month": "Augusti",
+      "trope": "Captive romance",
+      "text": "Du blev kidnappad.\nNu är det du som vägrar åka hem."
+    },
+    {
+      "type": "month",
+      "month": "September",
+      "trope": "Dark academia",
+      "text": "Det står ”plugga” på schemat.\nDet har aldrig hänt."
+    },
+    {
+      "type": "month",
+      "month": "Oktober",
+      "trope": "Morally grey",
+      "text": "Han är skurken i alla andra böcker.\n*Inte i din.*"
+    },
+    {
+      "type": "month",
+      "month": "November",
+      "trope": "Revenge romance",
+      "text": "Han kom tillbaka för att förstöra dig.\nPlanen håller inte."
+    },
+    {
+      "type": "month",
+      "month": "December",
+      "trope": "Touch her and die",
+      "text": "Någon tittade på dig.\nHan bor inte i landet längre."
+    },
+    {
+      "type": "cta",
+      "text": "Vilken månad är du? 👇",
+      "subtext": "Tagga någon som är december 😈\nFölj för fler serier 🔥"
+    }
+  ]
+}
