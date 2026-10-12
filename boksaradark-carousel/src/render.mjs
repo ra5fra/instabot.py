@@ -38,7 +38,11 @@ function normalize(slide, i) {
     if (!title) throw new Error(`${where}: "month" saknas`);
     return { ...slide, type, title, label: slide.trope ?? slide.label };
   }
-  if (type !== 'title') throw new Error(`${where}: okänd typ "${slide.type}" (hook, cta, title eller month)`);
+  if (type === 'countdown') {
+    for (const key of ['rank', 'irl', 'book']) if (!slide[key]) throw new Error(`${where}: "${key}" saknas`);
+    return { ...slide, type };
+  }
+  if (type !== 'title') throw new Error(`${where}: okänd typ "${slide.type}" (hook, cta, title, month eller countdown)`);
   return { ...slide, type, subtextStyle: slide.subtextStyle ?? (slide.type === 'hook' ? 'accent' : 'light') };
 }
 if (!Array.isArray(carousel.slides) || !carousel.slides.length) {

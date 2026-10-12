@@ -44,6 +44,10 @@ const CSS = `
     filter: drop-shadow(0 10px 28px rgba(0,0,0,.45));
     --box:${COLORS.paper}; --ink:${COLORS.ink}; }
   .stack.accent { --box:${COLORS.accentDark}; --ink:#fff; }
+  .stack.red { --box:${COLORS.accent}; --ink:#fff; }
+  .stack .pre { font-weight:900; text-transform:uppercase; letter-spacing:.04em; }
+  .stack.red .pre { color:rgba(255,255,255,.82); }
+  .stack:not(.red):not(.accent) .pre { color:${COLORS.accent}; }
   .stack .box { position:absolute; display:flex; align-items:center; justify-content:center;
     white-space:pre; background:var(--box); color:var(--ink); }
   .stack .fillet { position:absolute; }
@@ -62,6 +66,19 @@ const CSS = `
     white-space:nowrap; margin-bottom:34px; box-shadow:0 8px 30px rgba(0,0,0,.35); }
   .gap { height:34px; flex:none; }
 
+  /* countdown: siffran överst, handlingen i mitten, IRL / I boken under, ev. fotnot längst ner */
+  #stage.layout-countdown { justify-content:flex-start; padding-top:10px; }
+  .rank { font-family:'Cormorant Garamond', serif; font-weight:300; color:#fff; line-height:1.05;
+    white-space:nowrap; letter-spacing:.02em; flex:none; font-variant-numeric:lining-nums;
+    font-feature-settings:'lnum' 1;
+    text-shadow: 0 0 18px rgba(179,18,46,.95), 0 0 46px rgba(179,18,46,.8), 0 0 110px rgba(139,0,0,.9),
+      0 6px 20px rgba(0,0,0,.6); }
+  .cd-mid { width:100%; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  .cd-gap { height:64px; flex:none; }
+  .cd-row-gap { height:30px; flex:none; }
+  .cd-footer { width:100%; flex:none; display:flex; flex-direction:column; align-items:center; padding-bottom:6px; }
+  .cd-footer .divider { margin:0 0 30px; }
+
   .guides .zone { position:absolute; background:rgba(255,0,60,.28); outline:2px dashed rgba(255,0,60,.9); }
 `;
 
@@ -72,9 +89,10 @@ const DIVIDER = `
     <circle cx="160" cy="15" r="2.5" fill="${COLORS.accent}"/><circle cx="200" cy="15" r="2.5" fill="${COLORS.accent}"/>
   </svg>`;
 
-function stack(text, size, { variant = 'light', maxLines } = {}) {
-  return `<div class="stack ${variant === 'accent' ? 'accent' : ''}" data-text="${esc(text)}" data-size="${size}"
-    ${maxLines ? `data-max-lines="${maxLines}"` : ''}></div>`;
+function stack(text, size, { variant = 'light', maxLines, prefix } = {}) {
+  const cls = ['accent', 'red'].includes(variant) ? variant : '';
+  return `<div class="stack ${cls}" data-text="${esc(text)}" data-size="${size}"
+    ${maxLines ? `data-max-lines="${maxLines}"` : ''} ${prefix ? `data-prefix="${esc(prefix)}"` : ''}></div>`;
 }
 
 function slideContent(slide) {
@@ -89,8 +107,19 @@ function slideContent(slide) {
       return `
         ${stack(slide.text, slide.textSize ?? 86, { maxLines: 6 })}
         ${slide.subtext ? `<div class="gap"></div>${stack(slide.subtext, slide.subtextSize ?? 46, { variant: slide.subtextStyle })}` : ''}`;
+    case 'countdown':
+      return `
+        <div class="rank txt" data-size-px="${slide.rankSize ?? 250}">${esc(slide.rank)}</div>
+        <div class="cd-mid">
+          ${stack(slide.text, slide.textSize ?? 66, { maxLines: 4 })}
+          <div class="cd-gap"></div>
+          ${stack(slide.irl, slide.rowSize ?? 50, { variant: 'red', prefix: 'IRL:', maxLines: 2 })}
+          <div class="cd-row-gap"></div>
+          ${stack(slide.book, slide.rowSize ?? 50, { prefix: 'I boken:', maxLines: 2 })}
+        </div>
+        ${slide.footer ? `<div class="cd-footer">${DIVIDER}${stack(slide.footer, slide.footerSize ?? 58, { maxLines: 2 })}</div>` : ''}`;
     default:
-      throw new Error(`Okänd slide-typ "${slide.type}" (använd "title" eller "month")`);
+      throw new Error(`Okänd slide-typ "${slide.type}" (använd "title", "month" eller "countdown")`);
   }
 }
 
@@ -108,7 +137,7 @@ export function buildSlideHtml(slide, { rng, index, backgroundFile, guides }) {
 <body>
   ${background}
   ${ornaments(rng, { variant: index })}
-  <div id="stage">${slideContent(slide)}</div>
+  <div id="stage" class="layout-${slide.type}">${slideContent(slide)}</div>
   ${guides ? GUIDES : ''}
   <script>window.__SAFE = ${JSON.stringify({ ...SAFE, width: W, height: H })};</script>
   <script>${LAYOUT_JS}</script>

@@ -19,24 +19,24 @@
   if (!qa.fonts['Noto Color Emoji']) qa.issues.push('Noto Color Emoji laddades inte – emojis kan bli rutor');
 
   // ---- Text → ord-token. *så här* markerar accentord (röd text). \n tvingar ny rad. ----
-  // Korta ord (i, på, en, du …) hålls ihop med nästa ord så att en rad aldrig slutar på dem.
+  // Ett token med nb=true binds till nästa ord med hårt mellanslag (ingen radbrytning emellan).
+  // Korta ord (i, på, en, du …) binds alltid så att en rad aldrig slutar på dem.
   const isShortWord = (t) => /^[\p{L}\p{N}]{1,2}$/u.test(t);
 
-  function tokenize(text) {
+  function tokenize(text, prefix) {
     let em = false;
-    return text.split('\n').map((para) => {
-      const toks = para.split(' ').filter(Boolean).map((word) => {
-        let t = word;
-        let wordEm = em;
-        if (t.startsWith('*')) { t = t.slice(1); wordEm = true; em = true; }
-        if (t.endsWith('*')) { t = t.slice(0, -1); em = false; }
-        return { t, em: wordEm };
-      });
-      for (let i = toks.length - 2; i >= 0; i--) {
-        if (isShortWord(toks[i].t) && toks[i].em === toks[i + 1].em) {
-          toks.splice(i, 2, { t: `${toks[i].t}\u00a0${toks[i + 1].t}`, em: toks[i].em });
-        }
-      }
+    const words = (str, pre) => str.split(' ').filter(Boolean).map((word) => {
+      let t = word;
+      let wordEm = em;
+      if (!pre && t.startsWith('*')) { t = t.slice(1); wordEm = true; em = true; }
+      if (!pre && t.endsWith('*')) { t = t.slice(0, -1); em = false; }
+      return { t, em: wordEm, pre, nb: isShortWord(t) };
+    });
+    return text.split('\n').map((para, i) => {
+      const pre = i === 0 && prefix ? words(prefix, true) : [];
+      if (pre.length) pre[pre.length - 1].nb = true; // etiketten ("IRL:") följer alltid med första ordet
+      const toks = [...pre, ...words(para, false)];
+      if (toks.length) toks[toks.length - 1].nb = false;
       return toks;
     });
   }
@@ -44,8 +44,15 @@
   function wordSpan(tok) {
     const s = document.createElement('span');
     s.textContent = tok.t;
-    if (tok.em) s.className = 'em';
+    s.className = [tok.em && 'em', tok.pre && 'pre'].filter(Boolean).join(' ');
     return s;
+  }
+
+  function appendTokens(parent, toks) {
+    toks.forEach((tok, i) => {
+      if (i) parent.appendChild(document.createTextNode(toks[i - 1].nb ? '\u00a0' : ' '));
+      parent.appendChild(wordSpan(tok));
+    });
   }
 
   // Bryter texten balanserat (text-wrap: balance) och returnerar rader med uppmätt bredd.
@@ -57,13 +64,10 @@
     document.body.appendChild(meas);
 
     const lines = [];
-    for (const para of tokenize(stack.dataset.text)) {
+    for (const para of tokenize(stack.dataset.text, stack.dataset.prefix)) {
       const p = document.createElement('div');
       p.className = 'measure-para';
-      para.forEach((tok, i) => {
-        if (i) p.appendChild(document.createTextNode(' '));
-        p.appendChild(wordSpan(tok));
-      });
+      appendTokens(p, para);
       meas.appendChild(p);
       let current = null;
       let lastTop = null;
@@ -81,10 +85,7 @@
     const widths = lines.map((line) => {
       const one = document.createElement('span');
       one.className = 'measure-line';
-      line.forEach((tok, i) => {
-        if (i) one.appendChild(document.createTextNode(' '));
-        one.appendChild(wordSpan(tok));
-      });
+      appendTokens(one, line);
       meas.appendChild(one);
       return one.getBoundingClientRect().width;
     });
@@ -143,10 +144,7 @@
         border-radius:${b.r.map((r) => `${r}px`).join(' ')}`;
       // Ett inre span så att mellanslagen inte slukas av flex-layouten.
       const inner = document.createElement('span');
-      lines[i].forEach((tok, j) => {
-        if (j) inner.appendChild(document.createTextNode(' '));
-        inner.appendChild(wordSpan(tok));
-      });
+      appendTokens(inner, lines[i]);
       el.appendChild(inner);
       stack.appendChild(el);
     });

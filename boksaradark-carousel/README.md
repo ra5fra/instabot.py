@@ -22,7 +22,7 @@ npx playwright install chromium # bara om Chromium inte redan finns på datorn
 
 3. Bilderna hamnar i `output/<namn>/01.png, 02.png …` plus `preview.png` (kontaktbild med alla slides).
 
-Exempel: `npm run render trope-horoskop-del-2`
+Exempel: `npm run render trope-horoskop-del-2` eller `npm run render polisarende`
 
 Vill du se de säkra zonerna inritade? `npm run render <namn> -- --guides` lägger extra bilder i `output/<namn>/guides/`.
 
@@ -49,6 +49,16 @@ Vill du se de säkra zonerna inritade? `npm run render <namn> -- --guides` lägg
       "text": "Mening ett.\nMening två.", // textrutan
       "textSize": 68,               // valfri
       "titleSize": 190              // valfri, månadsnamnet
+    },
+    // Countdown-slide (topplista)
+    {
+      "type": "countdown",
+      "rank": "#5",                       // stor siffra i serif med röd glöd, överst
+      "text": "Står utanför\nditt fönster kl. 03", // handlingen, vit ruta
+      "irl": "🚨 Polisanmälan",            // röd ruta, får etiketten "IRL:" automatiskt
+      "book": "😍 Så romantiskt",          // vit ruta, får etiketten "I boken:" automatiskt
+      "footer": "Vilken skulle du förlåta? 👇", // valfri, extra ruta längst ner
+      "textSize": 66, "rowSize": 50, "footerSize": 58, "rankSize": 250 // valfria
     }
   ]
 }

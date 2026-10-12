@@ -1,0 +1,45 @@
+{
+  "slides": [
+    {
+      "type": "hook",
+      "text": "Saker han gör i dark romance som hade varit ett *polisärende* i Sverige 🚨",
+      "subtext": "Nr 1 är värst · svep →"
+    },
+    {
+      "type": "countdown",
+      "rank": "#5",
+      "text": "Har din telefon spårad dygnet runt",
+      "irl": "🚨 Ring 112",
+      "book": "😍 Han bryr sig bara"
+    },
+    {
+      "type": "countdown",
+      "rank": "#4",
+      "text": "Står utanför\nditt fönster kl. 03",
+      "irl": "🚨 Polisanmälan",
+      "book": "😍 Så romantiskt"
+    },
+    {
+      "type": "countdown",
+      "rank": "#3",
+      "text": "Har en nyckel till din lägenhet.\nDu har aldrig gett honom en.",
+      "irl": "🚨 Byt lås. Nu.",
+      "book": "😍 Han ville se\natt du sov gott"
+    },
+    {
+      "type": "countdown",
+      "rank": "#2",
+      "text": "Kidnappar dig\n”för din egen säkerhet”",
+      "irl": "🚨 Rikslarm",
+      "book": "😍 Typ första dejten"
+    },
+    {
+      "type": "countdown",
+      "rank": "#1",
+      "text": "Någon tittade på dig.\nDen personen är försvunnen nu.",
+      "irl": "🚨 Livstid",
+      "book": "😍 Gift dig med honom",
+      "footer": "Vilken skulle du förlåta? 👇"
+    }
+  ]
+}
