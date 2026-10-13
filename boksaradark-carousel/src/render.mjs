@@ -32,24 +32,29 @@ const carousel = JSON.parse(readFileSync(jsonPath, 'utf8'));
 function normalize(slide, i) {
   const where = `slide ${i + 1}`;
   const type = { hook: 'title', cta: 'title' }[slide.type] ?? slide.type ?? 'title';
-  if (!slide.text) throw new Error(`${where}: "text" saknas`);
+  if (!slide.text && slide.type !== 'translation') throw new Error(`${where}: "text" saknas`);
   if (type === 'month') {
     const title = slide.month ?? slide.title;
     if (!title) throw new Error(`${where}: "month" saknas`);
     return { ...slide, type, title, label: slide.trope ?? slide.label };
   }
+  if (type === 'translation') {
+    for (const key of ['rank', 'original', 'translation', 'punchline']) if (!slide[key]) throw new Error(`${where}: "${key}" saknas`);
+    return { ...slide, type };
+  }
   if (type === 'countdown') {
     for (const key of ['rank', 'irl', 'book']) if (!slide[key]) throw new Error(`${where}: "${key}" saknas`);
     return { ...slide, type };
   }
-  if (type !== 'title') throw new Error(`${where}: okänd typ "${slide.type}" (hook, cta, title, month eller countdown)`);
+  if (type !== 'title') throw new Error(`${where}: okänd typ "${slide.type}" (hook, cta, title, month, countdown eller translation)`);
   return { ...slide, type, subtextStyle: slide.subtextStyle ?? (slide.type === 'hook' ? 'accent' : 'light') };
 }
 if (!Array.isArray(carousel.slides) || !carousel.slides.length) {
   console.error('JSON:en måste ha en lista "slides"');
   process.exit(1);
 }
-const slides = carousel.slides.map(normalize);
+// "smartBreaks": true i JSON slår på de nyare radbrytningsreglerna även för hook/cta/title-slides.
+const slides = carousel.slides.map(normalize).map((s) => ({ smartBreaks: carousel.smartBreaks === true, ...s }));
 
 // ---- Bakgrundsbilder (valfritt) ----
 const bgDir = join(ROOT, 'backgrounds');

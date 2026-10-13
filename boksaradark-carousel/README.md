@@ -22,7 +22,7 @@ npx playwright install chromium # bara om Chromium inte redan finns på datorn
 
 3. Bilderna hamnar i `output/<namn>/01.png, 02.png …` plus `preview.png` (kontaktbild med alla slides).
 
-Exempel: `npm run render trope-horoskop-del-2` eller `npm run render polisarende`
+Exempel: `npm run render trope-horoskop-del-2`, `npm run render polisarende` eller `npm run render repliker-del-1`
 
 Vill du se de säkra zonerna inritade? `npm run render <namn> -- --guides` lägger extra bilder i `output/<namn>/guides/`.
 
@@ -31,6 +31,7 @@ Vill du se de säkra zonerna inritade? `npm run render <namn> -- --guides` lägg
 ```jsonc
 {
   "seed": "valfritt",   // ändra för att få andra träd/ornament (standard: filnamnet)
+  "smartBreaks": true,  // valfri: nyare radbrytning även för hook/cta (bindestreck, emojis, accentfraser)
   "slides": [
     // Hook / CTA / vanlig textslide
     {
@@ -59,6 +60,17 @@ Vill du se de säkra zonerna inritade? `npm run render <namn> -- --guides` lägg
       "book": "😍 Så romantiskt",          // vit ruta, får etiketten "I boken:" automatiskt
       "footer": "Vilken skulle du förlåta? 👇", // valfri, extra ruta längst ner
       "textSize": 66, "rowSize": 50, "footerSize": 58, "rankSize": 250 // valfria
+    },
+    // Translation-slide (stor text): replik → översättning → poäng
+    {
+      "type": "translation",
+      "rank": "#5",                  // stor siffra i serif med röd glöd, överst
+      "original": "You’re mine.",    // vit ruta under etiketten "ENGELSKA 🔥"
+      "translation": "Du är min.",   // vit ruta under etiketten "SVENSKA 💀"
+      "punchline": "Låter som …",    // röd ruta, störst på sliden
+      "fromLabel": "Engelska 🔥", "toLabel": "Svenska 💀", // valfria etiketter
+      "lineSize": 92, "punchlineSize": 112, "labelSize": 46, "rankSize": 170, // valfria
+      "maxScale": 1.3                // valfri: hur mycket korta texter får växa för att fylla ytan
     }
   ]
 }
@@ -70,6 +82,7 @@ Textregler:
 - Korta ord (1–2 bokstäver, t.ex. *i, på, en, är*) hålls automatiskt ihop med nästa ord så att en rad aldrig slutar på dem. Vill du hålla ihop fler ord själv: använd hårt mellanslag (`\u00a0`).
 - `*ord*` = röd accenttext (använd sparsamt, t.ex. en punchline).
 - Emojis och å/ä/ö fungerar som vanligt.
+- Med `"smartBreaks": true` (och alltid i translation-slides): långa ord med bindestreck delas efter strecket bara om de inte ryms på en rad, en röd `*accentfras*` hålls ihop och emojis/pilar hamnar aldrig först på en rad.
 - Är texten för lång krymps den automatiskt. Får den ändå inte plats skriver kommandot en varning (⚠) och avslutas med felkod.
 
 ## Bakgrunder

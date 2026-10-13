@@ -23,19 +23,28 @@
   // Korta ord (i, på, en, du …) binds alltid så att en rad aldrig slutar på dem.
   const isShortWord = (t) => /^[\p{L}\p{N}]{1,2}$/u.test(t);
 
-  function tokenize(text, prefix) {
+  // smart (opt-in via klassen "smart" på textrutan, används av nyare karuseller):
+  //  - långa sammansättningar delas efter bindestreck, men bara om hela ordet inte ryms (fits)
+  //  - en röd accentfras (*så här*) hålls ihop på en rad
+  //  - emojis och tecken (😭, →, ·) hamnar aldrig först på en rad
+  function tokenize(text, prefix, smart = false, fits = () => true) {
     let em = false;
-    const words = (str, pre) => str.split(' ').filter(Boolean).map((word) => {
+    const words = (str, pre) => str.split(' ').filter(Boolean).flatMap((word) => {
       let t = word;
       let wordEm = em;
       if (!pre && t.startsWith('*')) { t = t.slice(1); wordEm = true; em = true; }
       if (!pre && t.endsWith('*')) { t = t.slice(0, -1); em = false; }
-      return { t, em: wordEm, pre, nb: isShortWord(t) };
+      const parts = smart && !fits(t) ? t.split(/(?<=\p{L}-)(?=\p{L})/u) : [t];
+      return parts.map((part, i) => ({ t: part, em: wordEm, pre, nb: isShortWord(part), join: i < parts.length - 1 }));
     });
     return text.split('\n').map((para, i) => {
       const pre = i === 0 && prefix ? words(prefix, true) : [];
       if (pre.length) pre[pre.length - 1].nb = true; // etiketten ("IRL:") följer alltid med första ordet
       const toks = [...pre, ...words(para, false)];
+      if (smart) {
+        toks.forEach((tok, j) => { if (tok.em && toks[j + 1]?.em) tok.nb = true; });
+        toks.forEach((tok, j) => { if (j && /^[^\p{L}\p{N}]+$/u.test(tok.t)) toks[j - 1].nb = true; });
+      }
       if (toks.length) toks[toks.length - 1].nb = false;
       return toks;
     });
@@ -50,7 +59,8 @@
 
   function appendTokens(parent, toks) {
     toks.forEach((tok, i) => {
-      if (i) parent.appendChild(document.createTextNode(toks[i - 1].nb ? '\u00a0' : ' '));
+      // join: brytpunkt utan mellanslag (nollbredds-mellanslag) efter ett bindestreck
+      if (i) parent.appendChild(document.createTextNode(toks[i - 1].join ? '\u200b' : toks[i - 1].nb ? '\u00a0' : ' '));
       parent.appendChild(wordSpan(tok));
     });
   }
@@ -63,8 +73,18 @@
     meas.style.cssText = `font-size:${fontSize}px;width:${maxTextW}px`;
     document.body.appendChild(meas);
 
+    const smart = stack.classList.contains('smart');
+    const fits = (word) => {
+      const probe = document.createElement('span');
+      probe.className = 'measure-line';
+      probe.textContent = word;
+      meas.appendChild(probe);
+      const ok = probe.getBoundingClientRect().width <= maxTextW;
+      probe.remove();
+      return ok;
+    };
     const lines = [];
-    for (const para of tokenize(stack.dataset.text, stack.dataset.prefix)) {
+    for (const para of tokenize(stack.dataset.text, stack.dataset.prefix, smart, fits)) {
       const p = document.createElement('div');
       p.className = 'measure-para';
       appendTokens(p, para);
@@ -98,8 +118,10 @@
   function buildStack(stack, scale) {
     const fontSize = Number(stack.dataset.size) * scale;
     const padX = Math.round(fontSize * 0.36);
-    const padY = Math.round(fontSize * 0.13);
-    const lineH = Math.round(fontSize * 1.18 + padY * 2);
+    // data-tight (opt-in): tätare rader där mycket text ska få plats i stor storlek
+    const tight = stack.dataset.tight !== undefined;
+    const padY = Math.round(fontSize * (tight ? 0.1 : 0.13));
+    const lineH = Math.round(fontSize * (tight ? 1.1 : 1.18) + padY * 2);
     const { lines, widths, overflow } = measureLines(stack, fontSize, padX);
     const boxW = widths.map((w) => Math.ceil(w + padX * 2));
     const containerW = stack.parentElement.clientWidth;
@@ -156,7 +178,8 @@
   const stacks = [...document.querySelectorAll('.stack')];
   const scalables = [...document.querySelectorAll('[data-size-px]')];
   const tryScale = (scale) => {
-    scalables.forEach((el) => { el.style.fontSize = `${Number(el.dataset.sizePx) * scale}px`; });
+    // data-fixed (opt-in): behåller sin storlek, t.ex. siffran så att den är lika stor på alla slides
+    scalables.forEach((el) => { el.style.fontSize = `${Number(el.dataset.sizePx) * (el.dataset.fixed !== undefined ? 1 : scale)}px`; });
     const results = stacks.map((s) => buildStack(s, scale));
     const tooWide = scalables.some((el) => el.scrollWidth > stage.clientWidth + 0.5);
     const tooTall = stage.scrollHeight > stage.clientHeight + 0.5;
@@ -164,11 +187,22 @@
     const fits = !results.some((r) => r.overflow) && !tooWide && !tooTall && !tooManyLines;
     // "Hel mening per rad": varje \n-stycke i flerradiga texter ryms på en rad.
     const unbroken = results.every((r) => r.paragraphs < 2 || r.lines === r.paragraphs);
-    return { fits, unbroken };
+    const lines = results.reduce((sum, r) => sum + r.lines, 0);
+    return { fits, unbroken, lines };
   };
   // 1) Krymp högst 12 % om det låter varje mening stå på en egen rad. 2) Annars största storlek som får plats.
   let scale = 1;
   let found = false;
+  // 0) data-max-scale (opt-in): korta texter får växa upp till max-skalan och fylla innehållsytan.
+  //    Uppskalningen får aldrig ge fler rader än i normalstorlek.
+  const maxScale = Number(stage.dataset.maxScale || 1);
+  if (maxScale > 1) {
+    const baseLines = tryScale(1).lines;
+    for (let s = maxScale; s > 1.001 && !found; s -= 0.03) {
+      const r = tryScale(s);
+      if (r.fits && r.lines <= baseLines) { scale = s; found = true; }
+    }
+  }
   for (let s = 1; s >= 0.88 && !found; s -= 0.02) {
     const r = tryScale(s);
     if (r.fits && r.unbroken) { scale = s; found = true; }

@@ -55,6 +55,7 @@ const CSS = `
   .stack.accent .em { color:#fff; text-decoration:underline; text-underline-offset:.12em; }
   .measure { position:absolute; left:0; top:0; visibility:hidden; font-weight:800; letter-spacing:-0.01em; }
   .measure-para { text-wrap:balance; text-align:center; line-height:1.18; }
+  .measure.smart .measure-para span { white-space:nowrap; }
   .measure-line { white-space:nowrap; display:inline-block; }
 
   .month { font-family:'Cormorant Garamond', 'BokEmoji', serif; font-weight:300; color:#fff;
@@ -79,6 +80,15 @@ const CSS = `
   .cd-footer { width:100%; flex:none; display:flex; flex-direction:column; align-items:center; padding-bottom:6px; }
   .cd-footer .divider { margin:0 0 30px; }
 
+  /* translation: siffra, ENGELSKA → replik, SVENSKA → översättning, poäng (störst) i röd ruta */
+  #stage.layout-translation { justify-content:flex-start; padding-top:4px; }
+  .tr-mid { width:100%; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:space-evenly;
+    gap:40px; padding:16px 0 0; }
+  .tr-block { width:100%; display:flex; flex-direction:column; align-items:center; flex:none; }
+  .tr-label { font-weight:800; text-transform:uppercase; letter-spacing:.16em; color:rgba(255,255,255,.72);
+    line-height:1.1; white-space:nowrap; margin-bottom:.32em; padding-left:.16em;
+    text-shadow:0 2px 12px rgba(0,0,0,.85), 0 0 2px rgba(0,0,0,.6); }
+
   .guides .zone { position:absolute; background:rgba(255,0,60,.28); outline:2px dashed rgba(255,0,60,.9); }
 `;
 
@@ -89,10 +99,11 @@ const DIVIDER = `
     <circle cx="160" cy="15" r="2.5" fill="${COLORS.accent}"/><circle cx="200" cy="15" r="2.5" fill="${COLORS.accent}"/>
   </svg>`;
 
-function stack(text, size, { variant = 'light', maxLines, prefix } = {}) {
-  const cls = ['accent', 'red'].includes(variant) ? variant : '';
+// smart/tight är opt-in för nyare karuseller; utan dem beter sig textrutan som tidigare.
+function stack(text, size, { variant = 'light', maxLines, prefix, tight, smart } = {}) {
+  const cls = [['accent', 'red'].includes(variant) ? variant : '', smart ? 'smart' : ''].filter(Boolean).join(' ');
   return `<div class="stack ${cls}" data-text="${esc(text)}" data-size="${size}"
-    ${maxLines ? `data-max-lines="${maxLines}"` : ''} ${prefix ? `data-prefix="${esc(prefix)}"` : ''}></div>`;
+    ${maxLines ? `data-max-lines="${maxLines}"` : ''} ${prefix ? `data-prefix="${esc(prefix)}"` : ''} ${tight ? 'data-tight' : ''}></div>`;
 }
 
 function slideContent(slide) {
@@ -105,8 +116,8 @@ function slideContent(slide) {
         ${stack(slide.text, slide.textSize ?? 68, { maxLines: 6 })}`;
     case 'title':
       return `
-        ${stack(slide.text, slide.textSize ?? 86, { maxLines: 6 })}
-        ${slide.subtext ? `<div class="gap"></div>${stack(slide.subtext, slide.subtextSize ?? 46, { variant: slide.subtextStyle })}` : ''}`;
+        ${stack(slide.text, slide.textSize ?? 86, { maxLines: 6, smart: slide.smartBreaks })}
+        ${slide.subtext ? `<div class="gap"></div>${stack(slide.subtext, slide.subtextSize ?? 46, { variant: slide.subtextStyle, smart: slide.smartBreaks })}` : ''}`;
     case 'countdown':
       return `
         <div class="rank txt" data-size-px="${slide.rankSize ?? 250}">${esc(slide.rank)}</div>
@@ -118,8 +129,24 @@ function slideContent(slide) {
           ${stack(slide.book, slide.rowSize ?? 50, { prefix: 'I boken:', maxLines: 2 })}
         </div>
         ${slide.footer ? `<div class="cd-footer">${DIVIDER}${stack(slide.footer, slide.footerSize ?? 58, { maxLines: 2 })}</div>` : ''}`;
+    case 'translation':
+      return `
+        <div class="rank txt" data-fixed data-size-px="${slide.rankSize ?? 170}">${esc(slide.rank)}</div>
+        <div class="tr-mid">
+          <div class="tr-block">
+            <div class="tr-label txt" data-fixed data-size-px="${slide.labelSize ?? 46}">${esc(slide.fromLabel ?? 'Engelska 🔥')}</div>
+            ${stack(slide.original, slide.lineSize ?? 92, { maxLines: 3, tight: true, smart: true })}
+          </div>
+          <div class="tr-block">
+            <div class="tr-label txt" data-fixed data-size-px="${slide.labelSize ?? 46}">${esc(slide.toLabel ?? 'Svenska 💀')}</div>
+            ${stack(slide.translation, slide.lineSize ?? 92, { maxLines: 3, tight: true, smart: true })}
+          </div>
+          <div class="tr-block">
+            ${stack(slide.punchline, slide.punchlineSize ?? 112, { variant: 'red', maxLines: 4, tight: true, smart: true })}
+          </div>
+        </div>`;
     default:
-      throw new Error(`Okänd slide-typ "${slide.type}" (använd "title", "month" eller "countdown")`);
+      throw new Error(`Okänd slide-typ "${slide.type}" (använd "title", "month", "countdown" eller "translation")`);
   }
 }
 
@@ -137,7 +164,7 @@ export function buildSlideHtml(slide, { rng, index, backgroundFile, guides }) {
 <body>
   ${background}
   ${ornaments(rng, { variant: index })}
-  <div id="stage" class="layout-${slide.type}">${slideContent(slide)}</div>
+  <div id="stage" class="layout-${slide.type}"${slide.type === 'translation' ? ` data-max-scale="${slide.maxScale ?? 1.3}"` : ''}>${slideContent(slide)}</div>
   ${guides ? GUIDES : ''}
   <script>window.__SAFE = ${JSON.stringify({ ...SAFE, width: W, height: H })};</script>
   <script>${LAYOUT_JS}</script>

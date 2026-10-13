@@ -1,0 +1,54 @@
+{
+  "smartBreaks": true,
+  "slides": [
+    {
+      "type": "hook",
+      "text": "Dark romance-repliker som låter helt *fel* på svenska 😭",
+      "subtext": "Del 1 · nr 1 är värst\nsvep →",
+      "textSize": 108,
+      "subtextSize": 76
+    },
+    {
+      "type": "translation",
+      "rank": "#5",
+      "original": "You’re mine.",
+      "translation": "Du är min.",
+      "punchline": "Låter som lillebror när han tar sista kanelbullen"
+    },
+    {
+      "type": "translation",
+      "rank": "#4",
+      "original": "Say my name.",
+      "translation": "Säg mitt namn.",
+      "punchline": "…Kent?"
+    },
+    {
+      "type": "translation",
+      "rank": "#3",
+      "original": "I’d burn the world for you.",
+      "translation": "Jag skulle bränna ner världen för dig.",
+      "punchline": "Han har inte ens bytt till vinterdäck"
+    },
+    {
+      "type": "translation",
+      "rank": "#2",
+      "original": "Be a good girl for me.",
+      "translation": "Var en duktig flicka nu.",
+      "punchline": "Din mormor när du ätit upp potatisen"
+    },
+    {
+      "type": "translation",
+      "rank": "#1",
+      "original": "No one touches what’s mine.",
+      "translation": "Ingen rör det som är mitt.",
+      "punchline": "Varje svensk om sin matlåda i personalkylen"
+    },
+    {
+      "type": "cta",
+      "text": "Skriv den värsta svenska repliken du kan komma på 👇",
+      "subtext": "De bästa hamnar i del 2.\nFölj så du inte missar den 🔥",
+      "textSize": 108,
+      "subtextSize": 70
+    }
+  ]
+}
