@@ -82,7 +82,7 @@ Textregler:
 - Korta ord (1–2 bokstäver, t.ex. *i, på, en, är*) hålls automatiskt ihop med nästa ord så att en rad aldrig slutar på dem. Vill du hålla ihop fler ord själv: använd hårt mellanslag (`\u00a0`).
 - `*ord*` = röd accenttext (använd sparsamt, t.ex. en punchline).
 - Emojis och å/ä/ö fungerar som vanligt.
-- Med `"smartBreaks": true` (och alltid i translation-slides): långa ord med bindestreck delas efter strecket bara om de inte ryms på en rad, en röd `*accentfras*` hålls ihop och emojis/pilar hamnar aldrig först på en rad.
+- Med `"smartBreaks": true` (och alltid i translation-slides): långa ord med bindestreck delas efter strecket bara om de inte ryms på en rad, en röd `*accentfras*` hålls ihop och emojis/pilar hamnar aldrig först på en rad. Ett mjukt bindestreck (`\u00ad`) i ett långt ord, t.ex. `"Biljett\u00adkontrollanten"`, visar var ordet får delas ("Biljett-" / "kontrollanten") om det inte ryms på en rad.
 - Är texten för lång krymps den automatiskt. Får den ändå inte plats skriver kommandot en varning (⚠) och avslutas med felkod.
 
 ## Bakgrunder

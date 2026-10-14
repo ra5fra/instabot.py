@@ -1,0 +1,54 @@
+{
+  "smartBreaks": true,
+  "slides": [
+    {
+      "type": "hook",
+      "text": "Dark romance-repliker som låter helt *fel* på svenska 😭",
+      "subtext": "Del 2 · nr 1 är värst\nsvep →",
+      "textSize": 108,
+      "subtextSize": 76
+    },
+    {
+      "type": "translation",
+      "rank": "#5",
+      "original": "You’re my obsession.",
+      "translation": "Du är min besatthet.",
+      "punchline": "Pappa om sin Volvo 240"
+    },
+    {
+      "type": "translation",
+      "rank": "#4",
+      "original": "Look at me.",
+      "translation": "Titta på mig.",
+      "punchline": "Fotografen på skolfotot 2004"
+    },
+    {
+      "type": "translation",
+      "rank": "#3",
+      "original": "You can’t run from me.",
+      "translation": "Du kan inte springa ifrån mig.",
+      "punchline": "Biljett\u00adkontrollanten när du inte har köpt biljett"
+    },
+    {
+      "type": "translation",
+      "rank": "#2",
+      "original": "I’ve been watching you.",
+      "translation": "Jag har iakttagit dig.",
+      "punchline": "Grannen i brf-styrelsen som såg att du sorterade fel"
+    },
+    {
+      "type": "translation",
+      "rank": "#1",
+      "original": "You belong to me now.",
+      "translation": "Du tillhör mig nu.",
+      "punchline": "Skatteverket när deklarationen kommer"
+    },
+    {
+      "type": "cta",
+      "text": "Ska det bli en del 3?\nSkriv *JA* 👇",
+      "subtext": "Följ så du inte missar den 🔥",
+      "textSize": 108,
+      "subtextSize": 70
+    }
+  ]
+}

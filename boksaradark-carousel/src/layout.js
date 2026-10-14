@@ -34,7 +34,11 @@
       let wordEm = em;
       if (!pre && t.startsWith('*')) { t = t.slice(1); wordEm = true; em = true; }
       if (!pre && t.endsWith('*')) { t = t.slice(0, -1); em = false; }
-      const parts = smart && !fits(t) ? t.split(/(?<=\p{L}-)(?=\p{L})/u) : [t];
+      // Mjukt bindestreck (\u00ad) i JSON = tillåten delning av långa sammansättningar ("Biljett-|kontrollanten").
+      const whole = t.replace(/\u00ad/g, '');
+      const parts = smart && !fits(whole)
+        ? t.split(/(?<=\p{L}-)(?=\p{L})|\u00ad/u).map((p, i, all) => (i < all.length - 1 && !p.endsWith('-') ? `${p}-` : p))
+        : [whole];
       return parts.map((part, i) => ({ t: part, em: wordEm, pre, nb: isShortWord(part), join: i < parts.length - 1 }));
     });
     return text.split('\n').map((para, i) => {
