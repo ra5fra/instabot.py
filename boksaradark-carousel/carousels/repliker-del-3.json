@@ -1,0 +1,54 @@
+{
+  "smartBreaks": true,
+  "slides": [
+    {
+      "type": "hook",
+      "text": "Dark romance-repliker som låter helt *fel* på svenska 😭",
+      "subtext": "Del 3 · nr 1 är värst\nsvep →",
+      "textSize": 108,
+      "subtextSize": 76
+    },
+    {
+      "type": "translation",
+      "rank": "#5",
+      "original": "Don’t make me wait.",
+      "translation": "Låt mig inte vänta.",
+      "punchline": "Mamma i hallen med jackan redan på"
+    },
+    {
+      "type": "translation",
+      "rank": "#4",
+      "original": "I’m not a good man.",
+      "translation": "Jag är ingen bra man.",
+      "punchline": "Varje kille med fiskbild på Tinder"
+    },
+    {
+      "type": "translation",
+      "rank": "#3",
+      "original": "You’re playing with fire.",
+      "translation": "Du leker med elden.",
+      "punchline": "Pappa när du rör termostaten"
+    },
+    {
+      "type": "translation",
+      "rank": "#2",
+      "original": "Mine. Only mine.",
+      "translation": "Min. Bara min.",
+      "punchline": "Måsen när du äter räksmörgås på bryggan"
+    },
+    {
+      "type": "translation",
+      "rank": "#1",
+      "original": "I’ll always find you.",
+      "translation": "Jag kommer alltid att hitta dig.",
+      "punchline": "CSN, oavsett hur långt du flyttar"
+    },
+    {
+      "type": "cta",
+      "text": "Vilken replik\nska vi ta\ni del 4?\nSkriv den 👇",
+      "subtext": "Följ så du inte missar den 🔥",
+      "textSize": 108,
+      "subtextSize": 70
+    }
+  ]
+}
