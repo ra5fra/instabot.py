@@ -89,6 +89,11 @@ const CSS = `
     line-height:1.1; white-space:nowrap; margin-bottom:.32em; padding-left:.16em;
     text-shadow:0 2px 12px rgba(0,0,0,.85), 0 0 2px rgba(0,0,0,.6); }
 
+  /* translation, valfria fält: credit (💬 rad under poängen) och footer (vit ruta längst ner) */
+  .tr-credit { font-weight:800; color:rgba(255,255,255,.8); line-height:1.1; text-align:center; text-wrap:balance;
+    margin-top:.4em; max-width:100%; text-shadow:0 2px 12px rgba(0,0,0,.85), 0 0 2px rgba(0,0,0,.6); }
+  .tr-footer { width:100%; flex:none; padding-top:40px; }
+
   /* twist: siffra, setup i vit ruta, paus, vändningen (störst) i röd ruta */
   #stage.layout-twist { justify-content:flex-start; padding-top:4px; }
   .tw-mid { width:100%; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -148,9 +153,11 @@ function slideContent(slide) {
             ${stack(slide.translation, slide.lineSize ?? 92, { maxLines: 3, tight: true, smart: true })}
           </div>
           <div class="tr-block">
-            ${stack(slide.punchline, slide.punchlineSize ?? 112, { variant: 'red', maxLines: 4, tight: true, smart: true })}
+            ${stack(slide.punchline, slide.punchlineSize ?? 112, { variant: 'red', maxLines: 4, tight: true, smart: true })}${slide.credit ? `
+            <div class="tr-credit txt" data-fixed data-size-px="${slide.creditSize ?? 50}">💬 ${esc(slide.credit)}</div>` : ''}
           </div>
-        </div>`;
+        </div>${slide.footer ? `
+        <div class="tr-footer">${stack(slide.footer, slide.footerSize ?? 76, { maxLines: 2, tight: true, smart: true })}</div>` : ''}`;
     case 'twist':
       return `
         <div class="rank txt" data-fixed data-size-px="${slide.rankSize ?? 170}">${esc(slide.rank)}</div>

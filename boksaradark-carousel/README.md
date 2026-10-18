@@ -22,7 +22,7 @@ npx playwright install chromium # bara om Chromium inte redan finns på datorn
 
 3. Bilderna hamnar i `output/<namn>/01.png, 02.png …` plus `preview.png` (kontaktbild med alla slides).
 
-Exempel: `npm run render trope-horoskop-del-2`, `npm run render polisarende` `npm run render repliker-del-1` eller `npm run render svensk-hjalte-del-1`
+Exempel: `npm run render trope-horoskop-del-2`, `npm run render polisarende`, `npm run render repliker-del-1` eller `npm run render svensk-hjalte-del-1`
 
 Vill du se de säkra zonerna inritade? `npm run render <namn> -- --guides` lägger extra bilder i `output/<namn>/guides/`.
 
@@ -70,7 +70,9 @@ Vill du se de säkra zonerna inritade? `npm run render <namn> -- --guides` lägg
       "punchline": "Låter som …",    // röd ruta, störst på sliden
       "fromLabel": "Engelska 🔥", "toLabel": "Svenska 💀", // valfria etiketter
       "lineSize": 92, "punchlineSize": 112, "labelSize": 46, "rankSize": 170, // valfria
-      "maxScale": 1.3                // valfri: hur mycket korta texter får växa för att fylla ytan
+      "maxScale": 1.3,               // valfri: hur mycket korta texter får växa för att fylla ytan
+      "credit": "Förslag från Tette80",   // valfri: liten rad under poängen, med 💬 före
+      "footer": "Förslag till del 5? Skriv 👇" // valfri: vit ruta längst ner
     },
     // Twist-slide (stor text): setup → paus → vändning
     {

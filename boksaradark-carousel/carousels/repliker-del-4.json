@@ -1,0 +1,57 @@
+{
+  "smartBreaks": true,
+  "slides": [
+    {
+      "type": "hook",
+      "text": "Dark romance-repliker som låter helt *fel* på svenska 😭",
+      "subtext": "Del 4 · med era förslag\nsvep →",
+      "textSize": 108,
+      "subtextSize": 76
+    },
+    {
+      "type": "translation",
+      "rank": "#5",
+      "original": "Run.",
+      "translation": "Spring.",
+      "punchline": "Gympaläraren på Coopertestet"
+    },
+    {
+      "type": "translation",
+      "rank": "#4",
+      "original": "You’re going to beg.",
+      "translation": "Du kommer att tigga.",
+      "punchline": "Hunden när du skär ost"
+    },
+    {
+      "type": "translation",
+      "rank": "#3",
+      "original": "I’m going to ruin you.",
+      "translation": "Jag ska förstöra dig.",
+      "punchline": "Monterings\u00adanvisningen till en PAX-garderob"
+    },
+    {
+      "type": "translation",
+      "rank": "#2",
+      "original": "Who’s your daddy?",
+      "translation": "Vem är din pappa?",
+      "punchline": "Fritidspersonalen kvart över fem när ingen har hämtat dig",
+      "credit": "Förslag från Tette80"
+    },
+    {
+      "type": "cta",
+      "text": "Innan #1…\nfölj om du läser dark romance på svenska 🖤",
+      "subtext": "#1 är på nästa bild,\noch den kom från en av er 😈 →",
+      "textSize": 100,
+      "subtextSize": 70
+    },
+    {
+      "type": "translation",
+      "rank": "#1",
+      "original": "Crawl to me.",
+      "translation": "Kräla till mig.",
+      "punchline": "Du på väg till kylen dagen efter kräftskivan",
+      "credit": "Förslag från Mannagarden_Oppanang",
+      "footer": "Förslag till del 5? Skriv 👇"
+    }
+  ]
+}
