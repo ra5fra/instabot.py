@@ -1,0 +1,49 @@
+{
+  "smartBreaks": true,
+  "slides": [
+    {
+      "type": "hook",
+      "text": "Om dark romance-hjälten var *svensk* 🇸🇪🖤",
+      "subtext": "nr 1 är mest svensk\nsvep →",
+      "textSize": 108,
+      "subtextSize": 76
+    },
+    {
+      "type": "twist",
+      "rank": "#5",
+      "setup": "Han stalkar dig…",
+      "twist": "…men skickar en Doodle först så ni hittar en tid som passar"
+    },
+    {
+      "type": "twist",
+      "rank": "#4",
+      "setup": "Han är maffiaboss…",
+      "twist": "…i Eskilstuna.\nKör\u00a0Volvo\u00a0V70."
+    },
+    {
+      "type": "twist",
+      "rank": "#3",
+      "setup": "Han kidnappar dig…",
+      "twist": "…men frågar först om du har några\u00a0allergier"
+    },
+    {
+      "type": "twist",
+      "rank": "#2",
+      "setup": "”Du är min.”",
+      "twist": "…sen föreslår han att ni swishar hälften"
+    },
+    {
+      "type": "twist",
+      "rank": "#1",
+      "setup": "Han klättrar in genom ditt fönster kl. 03…",
+      "twist": "…och tar av sig skorna i hallen"
+    },
+    {
+      "type": "cta",
+      "text": "Vilken är\nmest svensk?\nSkriv siffran 👇",
+      "subtext": "Följ om du också läser dark romance på svenska.\nVi är inte många, men vi är farliga 🖤",
+      "textSize": 100,
+      "subtextSize": 70
+    }
+  ]
+}

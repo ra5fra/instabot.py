@@ -89,6 +89,12 @@ const CSS = `
     line-height:1.1; white-space:nowrap; margin-bottom:.32em; padding-left:.16em;
     text-shadow:0 2px 12px rgba(0,0,0,.85), 0 0 2px rgba(0,0,0,.6); }
 
+  /* twist: siffra, setup i vit ruta, paus, vändningen (störst) i röd ruta */
+  #stage.layout-twist { justify-content:flex-start; padding-top:4px; }
+  .tw-mid { width:100%; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:16px 0 0; }
+  .tw-pause { height:84px; flex:none; }
+
   .guides .zone { position:absolute; background:rgba(255,0,60,.28); outline:2px dashed rgba(255,0,60,.9); }
 `;
 
@@ -145,8 +151,16 @@ function slideContent(slide) {
             ${stack(slide.punchline, slide.punchlineSize ?? 112, { variant: 'red', maxLines: 4, tight: true, smart: true })}
           </div>
         </div>`;
+    case 'twist':
+      return `
+        <div class="rank txt" data-fixed data-size-px="${slide.rankSize ?? 170}">${esc(slide.rank)}</div>
+        <div class="tw-mid">
+          ${stack(slide.setup, slide.setupSize ?? 78, { maxLines: 3, tight: true, smart: true })}
+          <div class="tw-pause"></div>
+          ${stack(slide.twist, slide.twistSize ?? 116, { variant: 'red', maxLines: 5, tight: true, smart: true })}
+        </div>`;
     default:
-      throw new Error(`Okänd slide-typ "${slide.type}" (använd "title", "month", "countdown" eller "translation")`);
+      throw new Error(`Okänd slide-typ "${slide.type}" (använd "title", "month", "countdown", "translation" eller "twist")`);
   }
 }
 
@@ -164,7 +178,7 @@ export function buildSlideHtml(slide, { rng, index, backgroundFile, guides }) {
 <body>
   ${background}
   ${ornaments(rng, { variant: index })}
-  <div id="stage" class="layout-${slide.type}"${slide.type === 'translation' ? ` data-max-scale="${slide.maxScale ?? 1.3}"` : ''}>${slideContent(slide)}</div>
+  <div id="stage" class="layout-${slide.type}"${['translation', 'twist'].includes(slide.type) ? ` data-max-scale="${slide.maxScale ?? 1.3}"` : ''}>${slideContent(slide)}</div>
   ${guides ? GUIDES : ''}
   <script>window.__SAFE = ${JSON.stringify({ ...SAFE, width: W, height: H })};</script>
   <script>${LAYOUT_JS}</script>

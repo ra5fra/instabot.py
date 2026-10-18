@@ -22,7 +22,7 @@ npx playwright install chromium # bara om Chromium inte redan finns på datorn
 
 3. Bilderna hamnar i `output/<namn>/01.png, 02.png …` plus `preview.png` (kontaktbild med alla slides).
 
-Exempel: `npm run render trope-horoskop-del-2`, `npm run render polisarende` eller `npm run render repliker-del-1`
+Exempel: `npm run render trope-horoskop-del-2`, `npm run render polisarende` `npm run render repliker-del-1` eller `npm run render svensk-hjalte-del-1`
 
 Vill du se de säkra zonerna inritade? `npm run render <namn> -- --guides` lägger extra bilder i `output/<namn>/guides/`.
 
@@ -71,6 +71,15 @@ Vill du se de säkra zonerna inritade? `npm run render <namn> -- --guides` lägg
       "fromLabel": "Engelska 🔥", "toLabel": "Svenska 💀", // valfria etiketter
       "lineSize": 92, "punchlineSize": 112, "labelSize": 46, "rankSize": 170, // valfria
       "maxScale": 1.3                // valfri: hur mycket korta texter får växa för att fylla ytan
+    },
+    // Twist-slide (stor text): setup → paus → vändning
+    {
+      "type": "twist",
+      "rank": "#5",                   // stor siffra i serif med röd glöd, överst
+      "setup": "Han stalkar dig…",    // vit ruta
+      "twist": "…men skickar en Doodle först", // röd ruta, störst på sliden
+      "setupSize": 78, "twistSize": 116, "rankSize": 170, // valfria
+      "maxScale": 1.3                 // valfri, som för translation
     }
   ]
 }
@@ -82,7 +91,7 @@ Textregler:
 - Korta ord (1–2 bokstäver, t.ex. *i, på, en, är*) hålls automatiskt ihop med nästa ord så att en rad aldrig slutar på dem. Vill du hålla ihop fler ord själv: använd hårt mellanslag (`\u00a0`).
 - `*ord*` = röd accenttext (använd sparsamt, t.ex. en punchline).
 - Emojis och å/ä/ö fungerar som vanligt.
-- Med `"smartBreaks": true` (och alltid i translation-slides): långa ord med bindestreck delas efter strecket bara om de inte ryms på en rad, en röd `*accentfras*` hålls ihop och emojis/pilar hamnar aldrig först på en rad. Ett mjukt bindestreck (`\u00ad`) i ett långt ord, t.ex. `"Biljett\u00adkontrollanten"`, visar var ordet får delas ("Biljett-" / "kontrollanten") om det inte ryms på en rad.
+- Med `"smartBreaks": true` (och alltid i translation- och twist-slides): långa ord med bindestreck delas efter strecket bara om de inte ryms på en rad, en röd `*accentfras*` hålls ihop och emojis/pilar hamnar aldrig först på en rad. Ett mjukt bindestreck (`\u00ad`) i ett långt ord, t.ex. `"Biljett\u00adkontrollanten"`, visar var ordet får delas ("Biljett-" / "kontrollanten") om det inte ryms på en rad.
 - Är texten för lång krymps den automatiskt. Får den ändå inte plats skriver kommandot en varning (⚠) och avslutas med felkod.
 
 ## Bakgrunder

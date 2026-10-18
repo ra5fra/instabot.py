@@ -32,11 +32,15 @@ const carousel = JSON.parse(readFileSync(jsonPath, 'utf8'));
 function normalize(slide, i) {
   const where = `slide ${i + 1}`;
   const type = { hook: 'title', cta: 'title' }[slide.type] ?? slide.type ?? 'title';
-  if (!slide.text && slide.type !== 'translation') throw new Error(`${where}: "text" saknas`);
+  if (!slide.text && !['translation', 'twist'].includes(slide.type)) throw new Error(`${where}: "text" saknas`);
   if (type === 'month') {
     const title = slide.month ?? slide.title;
     if (!title) throw new Error(`${where}: "month" saknas`);
     return { ...slide, type, title, label: slide.trope ?? slide.label };
+  }
+  if (type === 'twist') {
+    for (const key of ['rank', 'setup', 'twist']) if (!slide[key]) throw new Error(`${where}: "${key}" saknas`);
+    return { ...slide, type };
   }
   if (type === 'translation') {
     for (const key of ['rank', 'original', 'translation', 'punchline']) if (!slide[key]) throw new Error(`${where}: "${key}" saknas`);
@@ -46,7 +50,7 @@ function normalize(slide, i) {
     for (const key of ['rank', 'irl', 'book']) if (!slide[key]) throw new Error(`${where}: "${key}" saknas`);
     return { ...slide, type };
   }
-  if (type !== 'title') throw new Error(`${where}: okänd typ "${slide.type}" (hook, cta, title, month, countdown eller translation)`);
+  if (type !== 'title') throw new Error(`${where}: okänd typ "${slide.type}" (hook, cta, title, month, countdown, translation eller twist)`);
   return { ...slide, type, subtextStyle: slide.subtextStyle ?? (slide.type === 'hook' ? 'accent' : 'light') };
 }
 if (!Array.isArray(carousel.slides) || !carousel.slides.length) {
