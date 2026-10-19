@@ -1,0 +1,5 @@
+node_modules/
+# 25 MB – downloaded automatically by `npm install` (scripts/fetch-fonts.mjs)
+assets/fonts/NotoColorEmoji.ttf
+# safe-zone helper images from --guides
+output/*/guides/
