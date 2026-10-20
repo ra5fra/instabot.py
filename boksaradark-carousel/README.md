@@ -81,7 +81,8 @@ Vill du se de säkra zonerna inritade? `npm run render <namn> -- --guides` lägg
       "setup": "Han stalkar dig…",    // vit ruta
       "twist": "…men skickar en Doodle först", // röd ruta, störst på sliden
       "setupSize": 78, "twistSize": 116, "rankSize": 170, // valfria
-      "maxScale": 1.3                 // valfri, som för translation
+      "maxScale": 1.3,                // valfri, som för translation
+      "footer": "Hur många av 5 stämmer? Skriv siffran 👇" // valfri: vit ruta längst ner
     }
   ]
 }

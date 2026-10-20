@@ -1,0 +1,50 @@
+{
+  "smartBreaks": true,
+  "slides": [
+    {
+      "type": "hook",
+      "text": "Tecken på att du läser *för mycket* dark\u00a0romance 🚩",
+      "subtext": "nr 1 är värst\nsvep →",
+      "textSize": 108,
+      "subtextSize": 76
+    },
+    {
+      "type": "twist",
+      "rank": "#5",
+      "setup": "Din partner vet inte var du är…",
+      "twist": "…och du blir besviken"
+    },
+    {
+      "type": "twist",
+      "rank": "#4",
+      "setup": "Någon säger ”du är min”…",
+      "twist": "…och du tänker på kanelbullar"
+    },
+    {
+      "type": "twist",
+      "rank": "#3",
+      "setup": "Du hör steg i trapphuset kl. 03…",
+      "twist": "…och blir hoppfull"
+    },
+    {
+      "type": "twist",
+      "rank": "#2",
+      "setup": "Grannen i brf-styrelsen säger att han sett dig sortera fel…",
+      "twist": "…och du rodnar"
+    },
+    {
+      "type": "hook",
+      "text": "Innan #1…\nfölj om du\nkänner igen dig.\nDu är bland\nvänner här 🖤",
+      "subtext": "#1 är på nästa bild 😈 →",
+      "textSize": 96,
+      "subtextSize": 70
+    },
+    {
+      "type": "twist",
+      "rank": "#1",
+      "setup": "Du lämnar ytterdörren olåst…",
+      "twist": "…för säkerhets skull",
+      "footer": "Hur många av 5 stämmer? Skriv siffran 👇"
+    }
+  ]
+}

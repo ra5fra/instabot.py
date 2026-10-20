@@ -99,6 +99,7 @@ const CSS = `
   .tw-mid { width:100%; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
     padding:16px 0 0; }
   .tw-pause { height:84px; flex:none; }
+  .tw-footer { width:100%; flex:none; padding-top:36px; }
 
   .guides .zone { position:absolute; background:rgba(255,0,60,.28); outline:2px dashed rgba(255,0,60,.9); }
 `;
@@ -165,7 +166,8 @@ function slideContent(slide) {
           ${stack(slide.setup, slide.setupSize ?? 78, { maxLines: 3, tight: true, smart: true })}
           <div class="tw-pause"></div>
           ${stack(slide.twist, slide.twistSize ?? 116, { variant: 'red', maxLines: 5, tight: true, smart: true })}
-        </div>`;
+        </div>${slide.footer ? `
+        <div class="tw-footer">${stack(slide.footer, slide.footerSize ?? 76, { maxLines: 3, tight: true, smart: true })}</div>` : ''}`;
     default:
       throw new Error(`Okänd slide-typ "${slide.type}" (använd "title", "month", "countdown", "translation" eller "twist")`);
   }
