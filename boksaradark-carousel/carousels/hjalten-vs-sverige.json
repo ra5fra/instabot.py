@@ -1,0 +1,50 @@
+{
+  "smartBreaks": true,
+  "slides": [
+    {
+      "type": "hook",
+      "text": "Dark\u00a0romance-hjälten vs. *svensk vardag* 🇸🇪🖤",
+      "subtext": "nr 1 är värst\nsvep →",
+      "textSize": 108,
+      "subtextSize": 76
+    },
+    {
+      "type": "twist",
+      "rank": "#5",
+      "setup": "Han ska köpa en lägenhet åt dig i Stockholm…",
+      "twist": "…han står i bostadskön.\n14 år kvar."
+    },
+    {
+      "type": "twist",
+      "rank": "#4",
+      "setup": "Han ska föra bort dig till sitt slott…",
+      "twist": "…men SJ har signalfel vid Katrineholm"
+    },
+    {
+      "type": "twist",
+      "rank": "#3",
+      "setup": "Han betalar allt kontant…",
+      "twist": "…ingen tar kontanter.\nHan får swisha."
+    },
+    {
+      "type": "twist",
+      "rank": "#2",
+      "setup": "Han hotar alla som tittar på dig…",
+      "twist": "…men tar nummerlapp på System\u00adbolaget först"
+    },
+    {
+      "type": "hook",
+      "text": "Innan #1…\nfölj om du läser\ndark romance\npå svenska 🖤",
+      "subtext": "#1 är på nästa bild 😈 →",
+      "textSize": 96,
+      "subtextSize": 70
+    },
+    {
+      "type": "twist",
+      "rank": "#1",
+      "setup": "Han ska bränna ner hela staden för dig…",
+      "twist": "…men måste söka eldnings­tillstånd hos kommunen först",
+      "footer": "Vilken skulle knäcka\nhonom först?\nSkriv siffran 👇"
+    }
+  ]
+}
