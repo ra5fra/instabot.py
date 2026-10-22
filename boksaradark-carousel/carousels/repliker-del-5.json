@@ -1,0 +1,55 @@
+{
+  "smartBreaks": true,
+  "slides": [
+    {
+      "type": "hook",
+      "text": "Dark romance-repliker som låter helt *fel* på svenska 😭",
+      "subtext": "Del 5 · nr 1 är värst\nsvep →",
+      "textSize": 108,
+      "subtextSize": 76
+    },
+    {
+      "type": "translation",
+      "rank": "#5",
+      "original": "You’re safe with me.",
+      "translation": "Du är trygg hos mig.",
+      "punchline": "Låter som reklam för hem­försäkring"
+    },
+    {
+      "type": "translation",
+      "rank": "#4",
+      "original": "I’ll be your nightmare.",
+      "translation": "Jag blir din mardröm.",
+      "punchline": "Bindnings­tiden på ditt gymkort"
+    },
+    {
+      "type": "translation",
+      "rank": "#3",
+      "original": "Little mouse.",
+      "translation": "Lilla musen.",
+      "punchline": "Bolibompa, kl. 07:30 en lördag"
+    },
+    {
+      "type": "translation",
+      "rank": "#2",
+      "original": "Tell me who did this to you.",
+      "translation": "Berätta vem som gjorde det här mot dig.",
+      "punchline": "Mamma när någon klippt din lugg på förskolan"
+    },
+    {
+      "type": "cta",
+      "text": "Innan #1…\nfölj om du läser dark romance på svenska 🖤",
+      "subtext": "#1 är på nästa bild 😈 →",
+      "textSize": 100,
+      "subtextSize": 70
+    },
+    {
+      "type": "translation",
+      "rank": "#1",
+      "original": "I don’t share.",
+      "translation": "Jag delar inte.",
+      "punchline": "Pappa och chipsskålen under Melodi­festivalen",
+      "footer": "Förslag till del 6? Skriv 👇"
+    }
+  ]
+}
