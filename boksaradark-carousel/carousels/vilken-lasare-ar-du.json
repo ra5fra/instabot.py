@@ -1,0 +1,50 @@
+{
+  "smartBreaks": true,
+  "slides": [
+    {
+      "type": "hook",
+      "text": "Vilken\ndark\u00a0romance-läsare *är du?* 🖤",
+      "subtext": "Tagga en kompis när du hittar henne 👀\nsvep →",
+      "textSize": 108,
+      "subtextSize": 70
+    },
+    {
+      "type": "twist",
+      "rank": "TYP 1",
+      "setup": "”Jag läser bara för handlingen.”",
+      "twist": "Har vikt hörnet på sida 214.\nOch 215. Och 216."
+    },
+    {
+      "type": "twist",
+      "rank": "TYP 2",
+      "setup": "Läser på pendeln…",
+      "twist": "…med skärmljuset på noll och helt neutralt ansikte"
+    },
+    {
+      "type": "twist",
+      "rank": "TYP 3",
+      "setup": "”Bara ett kapitel till.”",
+      "twist": "Klockan är 02:47.\nVäckarklockan ringer 06:15."
+    },
+    {
+      "type": "twist",
+      "rank": "TYP 4",
+      "setup": "Har en sambo i verkligheten…",
+      "twist": "…och tre fiktiva män som han får tävla mot"
+    },
+    {
+      "type": "hook",
+      "text": "Innan sista…\nfölj om du också\nhar för låga krav\npå män i böcker 🖤",
+      "subtext": "Typ 5 är den farligaste 😈 →",
+      "textSize": 100,
+      "subtextSize": 70
+    },
+    {
+      "type": "twist",
+      "rank": "TYP 5",
+      "setup": "Läser trigger warnings…",
+      "twist": "…som en meny.\n”Ja tack, en av varje.”",
+      "footer": "Vilken typ är du? Skriv siffran & tagga en kompis 👇"
+    }
+  ]
+}
