@@ -1,0 +1,42 @@
+{
+  "slides": [
+    {
+      "type": "hook",
+      "kicker": "save for tonight",
+      "text": "a 5-minute wind-down for people whose brain *starts talking* at bedtime"
+    },
+    {
+      "type": "point",
+      "num": "01",
+      "text": "write down the 3 things looping in your head",
+      "body": "they'll still be there tomorrow, on paper instead of in you"
+    },
+    {
+      "type": "point",
+      "num": "02",
+      "text": "phone across the room.",
+      "body": "yes, really"
+    },
+    {
+      "type": "point",
+      "num": "03",
+      "text": "breathe out slower than you breathe in",
+      "body": "five times"
+    },
+    {
+      "type": "app",
+      "label": "tonight's affirmation",
+      "text": "04 · read one affirmation out loud",
+      "affirmation": "I am allowed to rest before everything is solved."
+    },
+    {
+      "type": "point",
+      "text": "I get mine from Velora so I don't have to think of one",
+      "body": "(the irony is not lost on me)"
+    },
+    {
+      "type": "cta",
+      "text": "save this for *11:47pm*"
+    }
+  ]
+}

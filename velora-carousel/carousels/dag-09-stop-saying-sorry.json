@@ -1,0 +1,40 @@
+{
+  "slides": [
+    {
+      "type": "hook",
+      "kicker": "for the over-apologizers",
+      "text": "stop saying sorry. *say this instead*"
+    },
+    {
+      "type": "swap",
+      "from": "\"sorry for the late reply\"",
+      "to": "\"thanks for your patience\""
+    },
+    {
+      "type": "swap",
+      "from": "\"sorry, dumb question\"",
+      "to": "\"I have a question\""
+    },
+    {
+      "type": "swap",
+      "from": "\"sorry to bother you\"",
+      "to": "\"do you have a minute?\""
+    },
+    {
+      "type": "swap",
+      "from": "\"sorry I'm rambling\"",
+      "to": "\"thanks for listening\""
+    },
+    {
+      "type": "app",
+      "label": "this week's affirmation",
+      "text": "my affirmation this week",
+      "affirmation": "I don't need to apologize for taking up space.",
+      "note": "from Velora"
+    },
+    {
+      "type": "cta",
+      "text": "save this for your *next email*"
+    }
+  ]
+}

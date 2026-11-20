@@ -1,0 +1,40 @@
+{
+  "slides": [
+    {
+      "type": "hook",
+      "kicker": "for the people pleasers",
+      "text": "how to say no without writing a *4-paragraph apology*"
+    },
+    {
+      "type": "point",
+      "num": "01",
+      "text": "\"I can't this time, but thank you for thinking of me.\""
+    },
+    {
+      "type": "point",
+      "num": "02",
+      "text": "\"that doesn't work for me.\""
+    },
+    {
+      "type": "point",
+      "num": "03",
+      "text": "\"let me check and get back to you.\"",
+      "body": "(then decide later, calmly)"
+    },
+    {
+      "type": "point",
+      "num": "04",
+      "text": "\"I'm not taking on anything new right now.\""
+    },
+    {
+      "type": "app",
+      "text": "what I read before I hit send",
+      "affirmation": "My no is a full sentence.",
+      "note": "it's in my Velora app"
+    },
+    {
+      "type": "cta",
+      "text": "save this for the next *\"no worries if not\"*"
+    }
+  ]
+}

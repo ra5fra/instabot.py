@@ -1,0 +1,57 @@
+{
+  "slides": [
+    {
+      "type": "hook",
+      "kicker": "for the overthinkers",
+      "text": "texts that send every overthinker into a *spiral*"
+    },
+    {
+      "type": "bubble",
+      "messages": [
+        {
+          "text": "ok."
+        }
+      ],
+      "caption": "the period. *the period.*"
+    },
+    {
+      "type": "bubble",
+      "messages": [
+        {
+          "text": "can we talk later?"
+        }
+      ],
+      "caption": "and then nothing for 6 hours"
+    },
+    {
+      "type": "bubble",
+      "messages": [
+        {
+          "text": "lol"
+        }
+      ],
+      "caption": "no emoji. no caps. just *lol*"
+    },
+    {
+      "type": "bubble",
+      "messages": [
+        {
+          "from": "me",
+          "text": "did you get home ok?",
+          "meta": "Seen 3:14 PM"
+        }
+      ],
+      "caption": "seen. *no reply.*"
+    },
+    {
+      "type": "app",
+      "text": "most people are just busy, tired or driving. what helps me is one grounding affirmation before I reply",
+      "affirmation": "Not every silence is about me.",
+      "note": "I keep mine in Velora"
+    },
+    {
+      "type": "cta",
+      "text": "which one got you? send it to the *friend who sends it*"
+    }
+  ]
+}

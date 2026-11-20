@@ -1,0 +1,47 @@
+{
+  "slides": [
+    {
+      "type": "hook",
+      "kicker": "for after the party",
+      "text": "the post-party replay, *decoded*"
+    },
+    {
+      "type": "swap",
+      "fromLabel": "your brain",
+      "from": "\"I talked too much\"",
+      "toLabel": "reality",
+      "to": "they were having fun listening"
+    },
+    {
+      "type": "swap",
+      "fromLabel": "your brain",
+      "from": "\"that joke didn't land\"",
+      "toLabel": "reality",
+      "to": "no one remembers it"
+    },
+    {
+      "type": "swap",
+      "fromLabel": "your brain",
+      "from": "\"she seemed off with me\"",
+      "toLabel": "reality",
+      "to": "she was tired"
+    },
+    {
+      "type": "swap",
+      "fromLabel": "your brain",
+      "from": "\"I was so awkward\"",
+      "toLabel": "reality",
+      "to": "you were human. that's the point of a party"
+    },
+    {
+      "type": "app",
+      "text": "my reminder before bed",
+      "affirmation": "People enjoy me more than I think.",
+      "note": "it's in Velora"
+    },
+    {
+      "type": "cta",
+      "text": "send this to your *party friend* tonight"
+    }
+  ]
+}

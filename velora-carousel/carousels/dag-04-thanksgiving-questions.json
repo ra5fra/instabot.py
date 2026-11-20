@@ -1,0 +1,47 @@
+{
+  "slides": [
+    {
+      "type": "hook",
+      "kicker": "happy thanksgiving",
+      "text": "Thanksgiving questions, answered by someone who's done *overthinking them*"
+    },
+    {
+      "type": "swap",
+      "fromLabel": "they ask",
+      "from": "\"so are you seeing anyone?\"",
+      "toLabel": "you say",
+      "to": "\"not right now, and I'm really happy. how's your garden?\"",
+      "strike": false
+    },
+    {
+      "type": "swap",
+      "fromLabel": "they ask",
+      "from": "\"when are you getting a real job?\"",
+      "toLabel": "you say",
+      "to": "\"I'm figuring it out, and I'm proud of where I am.\"",
+      "strike": false
+    },
+    {
+      "type": "swap",
+      "fromLabel": "they ask",
+      "from": "\"you look tired\"",
+      "toLabel": "you say",
+      "to": "\"it's been a full year. how was yours?\"",
+      "strike": false
+    },
+    {
+      "type": "point",
+      "text": "you don't owe anyone a *defense of your life*"
+    },
+    {
+      "type": "app",
+      "text": "my reminder for today",
+      "affirmation": "I don't need to explain my life to be worthy of a seat at the table.",
+      "note": "from my Velora app"
+    },
+    {
+      "type": "cta",
+      "text": "send this to your cousin *before dinner*"
+    }
+  ]
+}

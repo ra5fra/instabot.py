@@ -1,0 +1,16 @@
+{
+  "name": "velora-carousel",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Genererar Instagram-karuseller (1080×1350) för Velora från JSON.",
+  "type": "module",
+  "scripts": {
+    "render": "node src/render.mjs"
+  },
+  "dependencies": {
+    "@fontsource/dm-sans": "^5.1.0",
+    "@fontsource/fraunces": "^5.1.0",
+    "@fontsource/noto-color-emoji": "^5.1.0",
+    "playwright": "1.56.1"
+  }
+}

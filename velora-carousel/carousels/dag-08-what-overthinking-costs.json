@@ -1,0 +1,40 @@
+{
+  "slides": [
+    {
+      "type": "hook",
+      "kicker": "for the overthinkers",
+      "text": "what overthinking *actually costs you*",
+      "sub": "(it's not just sleep)"
+    },
+    {
+      "type": "point",
+      "num": "01",
+      "text": "hours spent rehearsing conversations that never happen"
+    },
+    {
+      "type": "point",
+      "num": "02",
+      "text": "plans you skip because you already imagined them going wrong"
+    },
+    {
+      "type": "point",
+      "num": "03",
+      "text": "compliments you can't hear"
+    },
+    {
+      "type": "point",
+      "num": "04",
+      "text": "energy you could have spent on the people who matter"
+    },
+    {
+      "type": "app",
+      "text": "you can't stop the thoughts, but you can choose which one starts your day",
+      "affirmation": "I can wait for facts before I write the story.",
+      "note": "I start mine with an affirmation from Velora"
+    },
+    {
+      "type": "cta",
+      "text": "send this to someone who's been *stuck in their head* lately"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "slides": [
+    { "type": "hook", "kicker": "for the overthinkers", "text": "signs you're an *overthinker*, not just \"someone who thinks a lot\"" },
+    { "type": "point", "num": "01", "text": "you rehearse phone calls before you make them" },
+    { "type": "point", "num": "02", "text": "you reread a text you already sent. *four times.*" },
+    { "type": "point", "num": "03", "text": "\"ok.\" ruins your whole afternoon" },
+    { "type": "point", "num": "04", "text": "you replay compliments looking for the hidden insult" },
+    { "type": "app", "text": "what helped me: one affirmation every morning, before I open any messages", "affirmation": "I release moments no one else remembers.", "note": "I use an app called Velora for it" },
+    { "type": "cta", "text": "send this to the friend who *rereads her texts* too" }
+  ]
+}

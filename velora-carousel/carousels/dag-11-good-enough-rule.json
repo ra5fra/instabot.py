@@ -1,0 +1,39 @@
+{
+  "slides": [
+    {
+      "type": "hook",
+      "kicker": "decision fatigue",
+      "text": "the *\"good enough\"* rule for overthinkers"
+    },
+    {
+      "type": "point",
+      "kicker": "small decision",
+      "text": "give yourself 2 minutes, then pick"
+    },
+    {
+      "type": "point",
+      "kicker": "medium decision",
+      "text": "2 options max. flip a coin",
+      "body": "and notice which side you hoped for"
+    },
+    {
+      "type": "point",
+      "kicker": "big decision",
+      "text": "sleep on it once. *not ten times.*"
+    },
+    {
+      "type": "point",
+      "text": "most choices can be changed later. very few are permanent"
+    },
+    {
+      "type": "app",
+      "text": "the reminder I keep",
+      "affirmation": "Good enough is a valid choice.",
+      "note": "in my Velora app"
+    },
+    {
+      "type": "cta",
+      "text": "save this for your next *\"where should we eat?\"*"
+    }
+  ]
+}

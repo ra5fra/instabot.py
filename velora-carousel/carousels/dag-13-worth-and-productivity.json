@@ -1,0 +1,40 @@
+{
+  "slides": [
+    {
+      "type": "hook",
+      "kicker": "be honest",
+      "text": "signs you tie your worth to *being productive*"
+    },
+    {
+      "type": "point",
+      "num": "01",
+      "text": "you feel guilty on days off"
+    },
+    {
+      "type": "point",
+      "num": "02",
+      "text": "\"what did you do today?\" makes you nervous"
+    },
+    {
+      "type": "point",
+      "num": "03",
+      "text": "you list your tasks when someone asks how you are"
+    },
+    {
+      "type": "point",
+      "num": "04",
+      "text": "you only let yourself rest once you're exhausted"
+    },
+    {
+      "type": "app",
+      "label": "my weekend affirmation",
+      "text": "you're worthy on the days you get nothing done",
+      "affirmation": "Rest is not a reward. It's a need.",
+      "note": "from Velora"
+    },
+    {
+      "type": "cta",
+      "text": "save this for your next *lazy Sunday*"
+    }
+  ]
+}

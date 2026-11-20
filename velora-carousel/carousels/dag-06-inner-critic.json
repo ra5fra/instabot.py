@@ -1,0 +1,39 @@
+{
+  "slides": [
+    {
+      "type": "hook",
+      "kicker": "be honest",
+      "text": "things you'd never say to your best friend but *say to yourself* every day"
+    },
+    {
+      "type": "point",
+      "num": "01",
+      "text": "\"you're so behind.\""
+    },
+    {
+      "type": "point",
+      "num": "02",
+      "text": "\"of course you messed that up.\""
+    },
+    {
+      "type": "point",
+      "num": "03",
+      "text": "\"they're just being nice to you.\""
+    },
+    {
+      "type": "point",
+      "text": "now say it the way you'd say it to her",
+      "body": "\"you're on your own timeline.\"\n\"that was one mistake, not a personality.\""
+    },
+    {
+      "type": "app",
+      "text": "I practice this with one affirmation a day",
+      "affirmation": "I deserve the kindness I give everyone else.",
+      "note": "in my Velora app"
+    },
+    {
+      "type": "cta",
+      "text": "send this to your best friend. *she says it too*"
+    }
+  ]
+}

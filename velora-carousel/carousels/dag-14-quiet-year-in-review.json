@@ -1,0 +1,37 @@
+{
+  "slides": [
+    {
+      "type": "hook",
+      "kicker": "2026, gently",
+      "text": "a year in review for people whose wins were *quiet*"
+    },
+    {
+      "type": "point",
+      "text": "you got through days you didn't think you would"
+    },
+    {
+      "type": "point",
+      "text": "you said no at least once and *survived*"
+    },
+    {
+      "type": "point",
+      "text": "you let someone help you"
+    },
+    {
+      "type": "point",
+      "text": "you're a little gentler with yourself than in January",
+      "body": "a little counts"
+    },
+    {
+      "type": "app",
+      "label": "this month's affirmation",
+      "text": "my affirmation for December",
+      "affirmation": "I am proud of how far I've come.",
+      "note": "from Velora"
+    },
+    {
+      "type": "cta",
+      "text": "share this to your story if you're proud of your *quiet year*"
+    }
+  ]
+}

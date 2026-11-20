@@ -1,0 +1,42 @@
+{
+  "slides": [
+    {
+      "type": "hook",
+      "kicker": "sunday reset",
+      "text": "a Sunday reset that doesn't involve *rewriting your whole life*"
+    },
+    {
+      "type": "point",
+      "num": "01",
+      "text": "write down the 3 things you actually need to do on Monday",
+      "body": "only 3"
+    },
+    {
+      "type": "point",
+      "num": "02",
+      "text": "close every tab you opened \"for later\""
+    },
+    {
+      "type": "point",
+      "num": "03",
+      "text": "plan one small nice thing for Monday",
+      "body": "good coffee counts"
+    },
+    {
+      "type": "point",
+      "num": "04",
+      "text": "pick one affirmation for the week"
+    },
+    {
+      "type": "app",
+      "label": "this week's affirmation",
+      "text": "mine this week",
+      "affirmation": "Tomorrow can wait until tomorrow.",
+      "note": "I save it in Velora so it's the first thing I see"
+    },
+    {
+      "type": "cta",
+      "text": "save this for *next Sunday*"
+    }
+  ]
+}
