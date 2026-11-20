@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "render": "node src/render.mjs",
-    "screen": "node src/screen.mjs"
+    "screen": "node src/screen.mjs",
+    "mockup": "node src/screen.mjs --mockup"
   },
   "dependencies": {
     "@fontsource/dm-sans": "^5.1.0",

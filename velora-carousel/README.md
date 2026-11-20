@@ -87,7 +87,10 @@ iPhone-skärmdump (1179×2556). Använd den i reels i stället för en skärmins
 npm run screen dag-01                                   # screens/dag-01.json
 npm run screen all                                      # alla i screens/
 npm run screen -- --text "My no is a full sentence." --body "Valfri förklaring." --out min-skarm
+npm run mockup dag-01 dag-02 dag-03                     # skärmen i en iPhone, 1080×1920 för reels
 ```
+
+Mockupen hamnar i `output/screens/<namn>-mockup.png`. Den går också att få genom `"mockup": true` i JSON:en.
 
 Bilden hamnar i `output/screens/<namn>.png`.
 

@@ -4,8 +4,9 @@
 //   npm run screen dag-01                       → screens/dag-01.json
 //   npm run screen all                          → alla i screens/
 //   npm run screen -- --text "My no is a full sentence." [--body "…"] [--category "…"] [--out namn]
+//   npm run mockup dag-01 dag-02                → samma skärm i en iPhone på 1080×1920-bakgrund
 //
-// Bilden hamnar i output/screens/<namn>.png.
+// Bilden hamnar i output/screens/<namn>.png (mockupen i <namn>-mockup.png).
 import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { basename, join } from 'node:path';
@@ -38,7 +39,9 @@ const flag = (name) => {
   const i = args.indexOf(`--${name}`);
   return i >= 0 ? args[i + 1] : undefined;
 };
-const positional = args.filter((a, i) => !a.startsWith('--') && !(i > 0 && args[i - 1].startsWith('--')));
+const VALUE_FLAGS = ['--text', '--body', '--category', '--color', '--time', '--button', '--step', '--out'];
+const positional = args.filter((a, i) => !a.startsWith('--') && !(i > 0 && VALUE_FLAGS.includes(args[i - 1])));
+const mockup = args.includes('--mockup');
 const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 50);
 
 const jobs = [];
@@ -157,6 +160,47 @@ function html(s) {
   </body></html>`;
 }
 
+// ---- Mockup: skärmen i en iPhone (titanram, Dynamic Island) på Veloras bakgrund, 1080×1920 ----
+// Bilden fotograferas med deviceScaleFactor 3, så viewporten är 360×640 punkter.
+const MOCK = { width: 360, height: 640 };
+function mockupHtml(screenUrl, name) {
+  let h = 0;
+  for (const c of name) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  const flip = h % 2 === 1; // varierar ljusfläckarna mellan dagarna
+  const sw = 248; // skärmens bredd i punkter
+  const sh = Math.round(sw * PT.h / PT.w);
+  const bezel = 9;
+  const r = 44; // skärmens hörnradie
+  return `<!doctype html><html><head><meta charset="utf-8"><style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:${MOCK.width}px; height:${MOCK.height}px; overflow:hidden; }
+  body { position:relative; background:
+    radial-gradient(circle at ${flip ? '100% 0%' : '0% 0%'}, rgba(244,162,140,.62) 0, rgba(244,162,140,0) 58%),
+    radial-gradient(circle at ${flip ? '0% 100%' : '100% 100%'}, rgba(140,123,196,.45) 0, rgba(140,123,196,0) 60%),
+    #F7F1EA; }
+  .phone { position:absolute; left:50%; top:50%; width:${sw + bezel * 2}px; height:${sh + bezel * 2}px;
+    transform:translate(-50%, -50%); border-radius:${r + bezel}px; background:#111;
+    box-shadow: 0 0 0 1.6px #8E8A87, 0 0 0 2.6px #C9C4BF, 0 0 0 3.4px #6F6B68,
+      0 34px 60px -20px rgba(63,52,86,.55), 0 12px 24px -10px rgba(63,52,86,.35); }
+  .btn { position:absolute; width:3px; border-radius:2px; background:linear-gradient(90deg, #6F6B68, #B9B4AF); }
+  .screen { position:absolute; left:${bezel}px; top:${bezel}px; width:${sw}px; height:${sh}px; border-radius:${r}px;
+    overflow:hidden; background:#FCF7F2; }
+  .screen img { width:100%; height:100%; display:block; }
+  .island { position:absolute; left:50%; top:${Math.round(sw * 11 / 393)}px; transform:translateX(-50%);
+    width:${Math.round(sw * 125 / 393)}px; height:${Math.round(sw * 37 / 393)}px; border-radius:999px; background:#000; }
+  .shine { position:absolute; inset:0; border-radius:${r}px; pointer-events:none;
+    background:linear-gradient(115deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 32%); }
+  </style></head><body>
+    <div class="phone">
+      <span class="btn" style="left:-4.5px;top:96px;height:22px"></span>
+      <span class="btn" style="left:-4.5px;top:136px;height:42px"></span>
+      <span class="btn" style="left:-4.5px;top:186px;height:42px"></span>
+      <span class="btn" style="right:-4.5px;top:150px;height:66px"></span>
+      <div class="screen"><img src="${screenUrl}"><div class="island"></div><div class="shine"></div></div>
+    </div>
+  </body></html>`;
+}
+
 // ---- Rendera ----
 async function launch() {
   try { return await chromium.launch(); } catch { return chromium.launch({ channel: 'chrome' }); }
@@ -181,6 +225,16 @@ try {
     const warn = fit < 100 ? `  ⚠ texten krymptes till ${fit} % – överväg en kortare "body"` : '';
     if (warn) warnings++;
     console.log(`✓ output/screens/${name}.png${warn}`);
+    if (mockup || screen.mockup) {
+      const mockFile = join(tmp, `${name}-mockup.html`);
+      writeFileSync(mockFile, mockupHtml(pathToFileURL(target).href, name));
+      await page.setViewportSize(MOCK);
+      await page.goto(pathToFileURL(mockFile).href);
+      await page.evaluate(() => Promise.all([...document.images].map((i) => i.decode())));
+      await page.screenshot({ path: join(OUT, `${name}-mockup.png`) });
+      await page.setViewportSize({ width: PT.w, height: PT.h });
+      console.log(`✓ output/screens/${name}-mockup.png`);
+    }
   }
 } finally {
   await browser.close();
