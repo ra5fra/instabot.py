@@ -26,7 +26,7 @@ Bilderna hamnar i `output/<namn>/01.png, 02.png …` plus `preview.png` (alla sl
 
 ```jsonc
 {
-  "handle": "@velora.app",   // valfritt, kontonamnet i sidfoten
+  "handle": "@velora.affirmations",   // valfritt, kontonamnet i sidfoten
   "seed": "valfritt",        // ändra för att flytta ljusfläckarna i bakgrunden
   "slides": [
     // Första sliden. Sidfoten visar "swipe →".

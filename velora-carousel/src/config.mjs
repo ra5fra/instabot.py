@@ -24,4 +24,4 @@ export const COLORS = {
 };
 
 // Kontonamnet i sidfoten. Kan ändras per karusell med "handle" i JSON:en.
-export const HANDLE = '@velora.app';
+export const HANDLE = '@velora.affirmations';
