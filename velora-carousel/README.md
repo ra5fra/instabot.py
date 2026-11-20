@@ -77,3 +77,31 @@ beskär bilderna till 3:4, och telefoner rundar hörnen.
 | `src/template.mjs` | HTML/CSS för slidesen |
 | `src/layout.js` | automatisk textstorlek och kvalitetskontroll |
 | `src/config.mjs` | format, marginaler, färger, kontonamn |
+
+## Appskärmen (affirmation i appen)
+
+Gör en bild av appens "Today's affirmation"-skärm med valfri text, i samma storlek som en
+iPhone-skärmdump (1179×2556). Använd den i reels i stället för en skärminspelning.
+
+```bash
+npm run screen dag-01                                   # screens/dag-01.json
+npm run screen all                                      # alla i screens/
+npm run screen -- --text "My no is a full sentence." --body "Valfri förklaring." --out min-skarm
+```
+
+Bilden hamnar i `output/screens/<namn>.png`.
+
+```jsonc
+{
+  "affirmation": "I release moments no one else remembers.", // obligatorisk, den stora raden
+  "body": "Förklaringen ovanför",                              // valfri
+  "category": "General Self-Worth",                            // valfri, texten i pillret
+  "color": "#4C7AA5",                                          // valfri, kortets färg
+  "step": 1, "steps": 3,                                       // valfritt, "Say it out loud — 1 of 3"
+  "time": "9:41",                                              // valfritt, klockan i statusfältet
+  "statusBar": true,                                           // valfritt, false döljer statusfältet
+  "emojis": ["✨", "🌟", "💛", "🌈"]                            // valfritt, de fyra dekorationerna
+}
+```
+
+På en Mac används systemfonten (SF Pro) och Apples emojis, så bilden blir som i appen.

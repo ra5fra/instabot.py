@@ -17,7 +17,6 @@ const FONT_CSS = [
   '@fontsource/dm-sans/400.css',
   '@fontsource/dm-sans/500.css',
   '@fontsource/dm-sans/700.css',
-  '@fontsource/noto-color-emoji/index.css',
 ].map((p) => `<link rel="stylesheet" href="${pathToFileURL(join(ROOT, 'node_modules', p)).href}">`).join('\n');
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -28,8 +27,8 @@ const curly = (s) => String(s)
   .replace(/(^|[\s(\[—–*-])'/g, '$1\u2018').replace(/'/g, '\u2019');
 const rich = (s) => esc(curly(s)).replace(/\*([^*]+)\*/g, '<em>$1</em>').replace(/\n/g, '<br>');
 
-const SERIF = `'Fraunces', 'Noto Color Emoji', Georgia, serif`;
-const SANS = `'DM Sans', 'Noto Color Emoji', Helvetica, Arial, sans-serif`;
+const SERIF = `'Fraunces', 'Apple Color Emoji', 'Noto Color Emoji', Georgia, serif`;
+const SANS = `'DM Sans', 'Apple Color Emoji', 'Noto Color Emoji', Helvetica, Arial, sans-serif`;
 
 const CSS = `
   * { margin:0; padding:0; box-sizing:border-box; }
