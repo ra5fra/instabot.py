@@ -4,7 +4,8 @@
 //   npm run screen dag-01                       → screens/dag-01.json
 //   npm run screen all                          → alla i screens/
 //   npm run screen -- --text "My no is a full sentence." [--body "…"] [--category "…"] [--out namn]
-//   npm run mockup dag-01 dag-02                → samma skärm i en iPhone på 1080×1920-bakgrund
+//   npm run mockup dag-01 dag-02                → samma skärm i en iPhone, 1080×1920 med transparent bakgrund
+//   npm run mockup -- dag-01 --bg               → med Veloras bakgrund i stället
 //
 // Bilden hamnar i output/screens/<namn>.png (mockupen i <namn>-mockup.png).
 import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -163,7 +164,7 @@ function html(s) {
 // ---- Mockup: skärmen i en iPhone (titanram, Dynamic Island) på Veloras bakgrund, 1080×1920 ----
 // Bilden fotograferas med deviceScaleFactor 3, så viewporten är 360×640 punkter.
 const MOCK = { width: 360, height: 640 };
-function mockupHtml(screenUrl, name) {
+function mockupHtml(screenUrl, name, withBg) {
   let h = 0;
   for (const c of name) h = (h * 31 + c.charCodeAt(0)) >>> 0;
   const flip = h % 2 === 1; // varierar ljusfläckarna mellan dagarna
@@ -174,10 +175,11 @@ function mockupHtml(screenUrl, name) {
   return `<!doctype html><html><head><meta charset="utf-8"><style>
   * { margin:0; padding:0; box-sizing:border-box; }
   html, body { width:${MOCK.width}px; height:${MOCK.height}px; overflow:hidden; }
-  body { position:relative; background:
+  body { position:relative; background:${withBg ? `
     radial-gradient(circle at ${flip ? '100% 0%' : '0% 0%'}, rgba(244,162,140,.62) 0, rgba(244,162,140,0) 58%),
     radial-gradient(circle at ${flip ? '0% 100%' : '100% 100%'}, rgba(140,123,196,.45) 0, rgba(140,123,196,0) 60%),
-    #F7F1EA; }
+    #F7F1EA` : 'transparent'}; }
+  html { background:transparent; }
   .phone { position:absolute; left:50%; top:50%; width:${sw + bezel * 2}px; height:${sh + bezel * 2}px;
     transform:translate(-50%, -50%); border-radius:${r + bezel}px; background:#111;
     box-shadow: 0 0 0 1.6px #8E8A87, 0 0 0 2.6px #C9C4BF, 0 0 0 3.4px #6F6B68,
@@ -227,11 +229,11 @@ try {
     console.log(`✓ output/screens/${name}.png${warn}`);
     if (mockup || screen.mockup) {
       const mockFile = join(tmp, `${name}-mockup.html`);
-      writeFileSync(mockFile, mockupHtml(pathToFileURL(target).href, name));
+      writeFileSync(mockFile, mockupHtml(pathToFileURL(target).href, name, args.includes('--bg') || screen.mockupBackground === true));
       await page.setViewportSize(MOCK);
       await page.goto(pathToFileURL(mockFile).href);
       await page.evaluate(() => Promise.all([...document.images].map((i) => i.decode())));
-      await page.screenshot({ path: join(OUT, `${name}-mockup.png`) });
+      await page.screenshot({ path: join(OUT, `${name}-mockup.png`), omitBackground: true });
       await page.setViewportSize({ width: PT.w, height: PT.h });
       console.log(`✓ output/screens/${name}-mockup.png`);
     }
